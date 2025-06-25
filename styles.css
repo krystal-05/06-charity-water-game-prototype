@@ -1,0 +1,80 @@
+/* Charity: water Brand Colors
+
+Primary Colors:
+- Yellow:     #FFC907
+- Blue:       #2E9DF7
+
+Secondary Colors:
+- Light Blue: #8BD1CB
+- Green:      #4FCB53
+- Orange:     #FF902A
+- Red:        #F5402C
+- Dark Green: #159A48
+- Pink:       #F16061
+
+*/
+
+    body {
+      background-color: #FFC907;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .question-card {
+      background-color: #2E9DF7; /* Blue */
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: 50px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .card-answers {
+      margin-top: 20px;
+    }
+
+    .card-answers button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      background-color: white;
+      color: #000000; 
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .card-answers button:hover {
+      background-color: #8BD1CB; /* Light Blue */
+    }
+
+    .correct {
+      background-color: #4FCB53 !important; /* Green */
+      color: white;
+    }
+
+    .incorrect {
+      background-color: #F5402C !important; /* Red */
+      color: white;
+    }
+
+    .score-text {
+      text-align: right;
+      margin: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2E9DF7; /* Blue */
+    }
+
+    #replay-btn{
+      background-color:#FFC907;
+      color: black;
+      border: none;
+    }
+    #next-btn{
+    background-color:#FFC907;
+    color: black;
+    border: none;
+    }
