@@ -108,29 +108,36 @@ Secondary Colors:
 
 /* Easy Level button hover - lighter green */
 #easy-btn:hover {
-  background-color: #7eea9c; /* Lighter green */
-  color: #000000;
+  background-color: #7eea9c !important; /* Lighter green */
+  color: #000000 !important;
   cursor: pointer;
 }
 
-/* Medium Level button hover - lighter blue */
+/* Medium Level button - orange */
+#medium-btn {
+  background-color: #FF902A !important; /* Orange */
+  color: black !important;
+  border: none !important;
+}
+
+/* Medium Level button hover - lighter orange */
 #medium-btn:hover {
-  background-color: #b6ece7; /* Lighter light blue */
-  color: #000000;
+  background-color: #ffc180 !important; /* Lighter orange */
+  color: #000000 !important;
   cursor: pointer;
 }
 
 /* Hard Level button hover - lighter red/pink */
 #hard-btn:hover {
-  background-color: #f88b7d; /* Lighter red/pink */
-  color: #000000;
+  background-color: #f88b7d !important; /* Lighter red/pink */
+  color: #000000 !important;
   cursor: pointer;
 }
 
-/* Main Menu button hover - lighter gray */
+/* Main Menu button hover - lighter blue */
 #menu-btn:hover {
-  background-color: #868686; 
-  color: #000000;
+  background-color: #6ec6fa !important; /* Lighter blue */
+  color: #000000 !important;
   cursor: pointer;
 }
 
@@ -157,6 +164,27 @@ Secondary Colors:
 #medium-btn,
 #hard-btn,
 #menu-btn {
+  border: none !important;
+}
+
+#easy-btn {
+  background-color: #4FCB53 !important; /* Your green */
+  color: black !important;
+  border: none !important;
+}
+#medium-btn {
+  background-color: #FF902A !important; /* Orange */
+  color: black !important;
+  border: none !important;
+}
+#hard-btn {
+  background-color: #F5402C !important; /* Your red */
+  color: black !important;
+  border: none !important;
+}
+#menu-btn {
+  background-color: #2E9DF7 !important; /* Custom blue */
+  color: black !important;
   border: none !important;
 }
 

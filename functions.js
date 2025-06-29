@@ -120,7 +120,7 @@ function setTimer(duration) {
         btn.disabled = true;
       });
       incorrectSound.play();
-      alert("⏰ Time's up!");
+      alert("Time's up!");
       livesRemaining = removeLife(livesRemaining);
       if (livesRemaining === 0) {
         endGame();
@@ -161,7 +161,7 @@ function endGame() {
 
   endMessage.style.display = "block";
   endMessage.innerHTML = `
-    <h2>🎉 Game Over!</h2>
+    <h2>Game Over!</h2>
     <p>You got <strong>${score}</strong> out of <strong>${questions.length}</strong> questions right!</p>
     <p>Thanks for playing!</p>
   `;
