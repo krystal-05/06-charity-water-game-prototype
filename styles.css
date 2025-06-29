@@ -188,3 +188,18 @@ Secondary Colors:
   border: none !important;
 }
 
+/* Set Proxima Nova as the font for everything on the site */
+body,
+button,
+select,
+input,
+textarea,
+h1, h2, h3, h4, h5, h6,
+label,
+a,
+div,
+span,
+p {
+  font-family: 'Proxima Nova', Arial, sans-serif !important;
+}
+
