@@ -25,83 +25,94 @@ const questions = [
         correct: "703 million"
     }
 ]
+
+// Get difficulty from localStorage
+const savedMode = localStorage.getItem("difficulty");
+
+if (!savedMode) {
+  // No difficulty chosen — send user back to home page
+  window.location.href = "index.html";
+}
+
+
+// Declare mode after retrieving difficulty
+let mode = {
+  difficulty: savedMode,
+  lives: 0,
+  time: 0
+};
 const questionCard = document.getElementById("question-card");
 const cardContainer = document.getElementById("card-container");
 const scoreDisplay = document.getElementById("score");
 const nextButton = document.getElementById("next-btn");
 const replayButton = document.getElementById("replay-btn");
 const endMessage = document.getElementById("end-message");
+const easyButton = document.getElementById("easy-btn");
+const mediumButton = document.getElementById("medium-btn");
+const hardButton = document.getElementById("hard-btn");
+const menuButton = document.getElementById("menu-btn");
+const lives = document.getElementById("lives");
+const correctSound = new Audio("sounds/correct.mp3");
+const incorrectSound = new Audio("sounds/incorrect.mp3");
+let countdownInterval; 
 
+let duration = mode.time;
 let score = 0;
 let currentIndex = 0; 
 
-//shuffle the array of questions
-function shuffle(questions) {
-  for (let i = questions.length - 1; i > 0; i--) {
-    //creates a random index
-    const j = Math.floor(Math.random() * (i + 1));
-    //swapping i and j 
-    [questions[i], questions[j]] = [questions[j], questions[i]];
-  }
+
+//event listeners for end pop-up
+replayButton.addEventListener("click", () => {
+  resetGame();
+});
+
+easyButton.addEventListener("click", () => {
+  mode.difficulty = "easy"
+  mode.time = 30;
+  mode.lives = -1;
+  resetGame();
+});
+
+mediumButton.addEventListener("click", () => {
+  mode.difficulty = "medium";
+  mode.time = 20;
+  mode.lives = 3;
+  resetGame();
+});
+
+hardButton.addEventListener("click", () => {
+  mode.difficulty = "hard";
+  mode.time = 10;
+  mode.lives = 1;
+  resetGame();
+});
+
+menuButton.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+
+switch(mode.difficulty){
+  case "easy":
+    mode.time = 30; // Set mode.time here
+    mode.lives = -1; // -1 means unlimited lives
+    setTimer(mode.time);
+    setLives(mode.lives); 
+    break;
+  case "medium":
+    mode.time = 20;
+    mode.lives = 3; 
+    setTimer(mode.time);
+    setLives(mode.lives);
+    break;
+  case "hard":
+    mode.time = 10;
+    mode.lives = 1;
+    setTimer(mode.time);
+    setLives(mode.lives);
+    break;
 }
 
 shuffle(questions); 
-
-function createCard(){
-  const card = questions[currentIndex];
-
-  //create one card 
-  const newCard = questionCard.cloneNode(true);
-  //avoid duplicate id's
-  newCard.removeAttribute("id");
-  newCard.style.display = "block";
-
-  //create the question 
-  const questionSection = newCard.querySelector("#question-text");
-  questionSection.textContent = card.question;
-
-  // Get answers container from the newCard
-  const answersContainer = newCard.querySelector("#card-answers");
-
-
-  //create answers for each card
-  card.answers.forEach(answer => {
-      const button = document.createElement("button");
-      button.textContent = answer;
-
-      button.addEventListener("click", () => {
-          const allButtons = answersContainer.querySelectorAll("button");
-          //if correct answer 
-          if (answer === card.correct) {
-              button.classList.add("correct");
-              score++;
-              scoreDisplay.textContent = score;
-          }
-          //incorrect answer
-          else {
-              button.classList.add("incorrect");
-              //loop through the buttons to find the correct answer and make the button green
-              //the textContent needs to match the correct answer 
-              allButtons.forEach(btn => {
-                  if (btn.textContent === card.correct) {
-                      btn.classList.add("correct");
-                  }
-              });
-          }
-          //disable all buttons so you can’t keep clicking
-          allButtons.forEach(btn => btn.disabled = true);
-          // Show Next button
-          nextButton.style.display = "inline-block";
-          
-      });
-
-      //add buttons after all logic is created
-      answersContainer.appendChild(button);
-  });
-
-  //add the card to the container that holds all the cards 
-  cardContainer.appendChild(newCard);
-}
 
 // Show first question
 createCard();
@@ -110,32 +121,11 @@ createCard();
 nextButton.addEventListener("click", () => {
   currentIndex++;
   nextButton.style.display = "none";
-  if (currentIndex < questions.length){
+  if (currentIndex < questions.length && mode.lives !== 0) {
     createCard();
+    setTimer(mode.time);
   }
   else{
-      endMessage.style.display = "block";
-      endMessage.innerHTML = `
-        <h2>🎉 Game Over!</h2>
-        <p>You got <strong>${score}</strong> out of <strong>${questions.length}</strong> questions right!</p>
-        <p>Thanks for playing!</p>
-      `;
-      replayButton.style.display = "inline-block";
-        replayButton.addEventListener("click", () => {
-        //Clear variables
-        currentIndex = 0;
-        score = 0;
-        scoreDisplay.textContent = score;
-
-        // Hide end screen
-        endMessage.style.display = "none";
-        replayButton.style.display = "none";
-
-        // Clear all old cards and restart
-        cardContainer.innerHTML = "";
-        shuffle(questions);
-        createCard();
-      });
+      endGame();
   }
-  
 });

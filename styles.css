@@ -16,7 +16,7 @@ Secondary Colors:
 
     body {
       background-color: #FFC907;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Proxima Nova', Arial, sans-serif;
     }
 
     .question-card {
@@ -78,3 +78,85 @@ Secondary Colors:
     color: black;
     border: none;
     }
+
+/* Center the popup and add a border and padding */
+.popup {
+  position: fixed;
+  top: 50px; left: 50px; right: 50px; bottom: 50px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #8BD1CB; /* Light Blue */
+  border-radius: 16px;
+  padding: 16px 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  min-width: 300px;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Replay and Next button hover effect - lighter yellow */
+#replay-btn:hover,
+#next-btn:hover {
+  background-color: #ffe066; /* Lighter yellow */
+  color: #2E9DF7;
+  cursor: pointer;
+}
+
+/* Easy Level button hover - lighter green */
+#easy-btn:hover {
+  background-color: #7eea9c; /* Lighter green */
+  color: #000000;
+  cursor: pointer;
+}
+
+/* Medium Level button hover - lighter blue */
+#medium-btn:hover {
+  background-color: #b6ece7; /* Lighter light blue */
+  color: #000000;
+  cursor: pointer;
+}
+
+/* Hard Level button hover - lighter red/pink */
+#hard-btn:hover {
+  background-color: #f88b7d; /* Lighter red/pink */
+  color: #000000;
+  cursor: pointer;
+}
+
+/* Main Menu button hover - lighter gray */
+#menu-btn:hover {
+  background-color: #868686; 
+  color: #000000;
+  cursor: pointer;
+}
+
+/* Make all main buttons have black text by default and on hover */
+#replay-btn,
+#next-btn,
+#easy-btn,
+#medium-btn,
+#hard-btn,
+#menu-btn,
+#replay-btn:hover,
+#next-btn:hover,
+#easy-btn:hover,
+#medium-btn:hover,
+#hard-btn:hover,
+#menu-btn:hover {
+  color: black !important;
+}
+
+/* Remove border from popup buttons */
+#replay-btn,
+#next-btn,
+#easy-btn,
+#medium-btn,
+#hard-btn,
+#menu-btn {
+  border: none !important;
+}
+
